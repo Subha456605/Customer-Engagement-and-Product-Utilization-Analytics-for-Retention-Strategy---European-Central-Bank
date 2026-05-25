@@ -36,6 +36,17 @@ Understanding how customers use banking products and services is essential to de
 |EstimatedSalary|	Estimated annual salary|
 |Exited|	Churn indicator (target)|
 # Product Utilization  Analysis 
+### Dashboard
+<p>
+  <img src="Images/Dashboard_1.png"
+    width="45%">
+  <img src="Images/Dashboard_2.png"
+    width="45%">
+  <img src="Images/Dashboard_3.png"
+    width="45%">
+</p>
+For this analysis, an interactive dashboard was developed in Power BI that allows observation of the behavior of 10K banking customers in Europe. It has different slicers that allow the selection of specific characteristics for detailed analysis. Some measures were also created that complement the information provided by the dataset.
+
 ### Single-product vs multi-product retention
 Retention rates among single-product customers are lower compared to multi-product customers, indicating stronger loyalty and engagement among customers using multiple banking services such as credit cards, loans, and insurance products. Long-term customers demonstrate higher product adoption and deeper banking relationships over time. Out of 10K total customers, 5.08K are single-product customers, while 4.92K are multi-product customers. The customer base consists of 5.46K male customers and 4.54K female customers.
 
@@ -59,3 +70,10 @@ The overall churn rate is 20.37%, with female customers contributing 11.39% and 
   <img src="Images/Churntenure.png"
     width="60%">
 </p>
+
+# Skills and Tools
+* Data analysis
+* Critical thinking
+* Dashboard creation
+* Power BI
+
