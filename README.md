@@ -40,4 +40,10 @@ Understanding how customers use banking products and services is essential to de
 Retention rates among single-product customers are lower compared to multi-product customers, indicating stronger loyalty and engagement among customers using multiple banking services such as credit cards, loans, and insurance products. Long-term customers demonstrate higher product adoption and deeper banking relationships over time. Out of 10K total customers, 5.08K are single-product customers, while 4.92K are multi-product customers. The customer base consists of 5.46K male customers and 4.54K female customers.
 
 France has the highest customer concentration with 5.01K customers, where single-product and multi-product customer distributions are nearly balanced, and male customers slightly outnumber female customers. Germany has 2.51K customers, with male customers representing a higher proportion than female customers. Spain has 2.48K customers, where male customers also slightly exceed female customers in distribution.
-|![img](Images/Retention.png)|![img](Images/TenureProduct.png)|
+<p
+  <img src="Images/Retention.png"
+    width="45%">
+  <img src="Images/TenureProduct.png"
+    width="45%">
+</p>
+
