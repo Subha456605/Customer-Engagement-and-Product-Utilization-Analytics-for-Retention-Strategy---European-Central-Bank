@@ -40,10 +40,16 @@ Understanding how customers use banking products and services is essential to de
 Retention rates among single-product customers are lower compared to multi-product customers, indicating stronger loyalty and engagement among customers using multiple banking services such as credit cards, loans, and insurance products. Long-term customers demonstrate higher product adoption and deeper banking relationships over time. Out of 10K total customers, 5.08K are single-product customers, while 4.92K are multi-product customers. The customer base consists of 5.46K male customers and 4.54K female customers.
 
 France has the highest customer concentration with 5.01K customers, where single-product and multi-product customer distributions are nearly balanced, and male customers slightly outnumber female customers. Germany has 2.51K customers, with male customers representing a higher proportion than female customers. Spain has 2.48K customers, where male customers also slightly exceed female customers in distribution.
-<p
+<p>
   <img src="Images/Retention.png"
     width="45%">
   <img src="Images/TenureProduct.png"
     width="45%">
 </p>
 
+### Churn Rate 
+Single-product customers exhibit significantly higher churn rates compared to multi-product customers, suggesting that customers with limited product engagement are more likely to leave the bank. In contrast, customers using multiple banking services such as credit cards, loans, and insurance products demonstrate stronger retention and long-term engagement.
+
+Long-term customers also show higher churn levels than newer customers, indicating that extended tenure alone does not guarantee loyalty. This may result from changing financial needs, dissatisfaction with banking services, lack of personalized engagement, or competitive offers from other banks.
+
+The overall churn rate is 20.37%, with female customers contributing 11.39% and male customers contributing 8.98%, indicating that female customers experience comparatively higher churn. This suggests potential differences in customer satisfaction, service expectations, or engagement patterns across gender segments.
