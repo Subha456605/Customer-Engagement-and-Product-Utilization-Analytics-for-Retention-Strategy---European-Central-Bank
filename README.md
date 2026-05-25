@@ -53,3 +53,9 @@ Single-product customers exhibit significantly higher churn rates compared to mu
 Long-term customers also show higher churn levels than newer customers, indicating that extended tenure alone does not guarantee loyalty. This may result from changing financial needs, dissatisfaction with banking services, lack of personalized engagement, or competitive offers from other banks.
 
 The overall churn rate is 20.37%, with female customers contributing 11.39% and male customers contributing 8.98%, indicating that female customers experience comparatively higher churn. This suggests potential differences in customer satisfaction, service expectations, or engagement patterns across gender segments.
+<p>
+  <img src="Images/ChurnProduct.png"
+    width="35%">
+  <img src="Images/Churntenure.png"
+    width="60%">
+</p>
