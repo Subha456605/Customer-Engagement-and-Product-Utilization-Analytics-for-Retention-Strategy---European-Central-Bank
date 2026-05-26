@@ -35,7 +35,6 @@ Understanding how customers use banking products and services is essential to de
 |IsActiveMember|	Activity indicator|
 |EstimatedSalary|	Estimated annual salary|
 |Exited|	Churn indicator (target)|
-# Product Utilization  Analysis 
 ### Dashboard
 <p>
   <img src="Images/Dashboard_1.png"
@@ -47,6 +46,7 @@ Understanding how customers use banking products and services is essential to de
 </p>
 For this analysis, an interactive dashboard was developed in Power BI that allows observation of the behavior of 10K banking customers in Europe. It has different slicers that allow the selection of specific characteristics for detailed analysis. Some measures were also created that complement the information provided by the dataset.
 
+# Product Utilization  Analysis 
 ### Single-product vs multi-product retention
 Retention rates among single-product customers are lower compared to multi-product customers, indicating stronger loyalty and engagement among customers using multiple banking services such as credit cards, loans, and insurance products. Long-term customers demonstrate higher product adoption and deeper banking relationships over time. Out of 10K total customers, 5.08K are single-product customers, while 4.92K are multi-product customers. The customer base consists of 5.46K male customers and 4.54K female customers.
 
@@ -70,6 +70,55 @@ The overall churn rate is 20.37%, with female customers contributing 11.39% and 
   <img src="Images/Churntenure.png"
     width="60%">
 </p>
+
+# Financial Commitment vs Engagement Analysis
+###  Salary–balance mismatch detection
+This analysis evaluates customer financial commitment by comparing estimated salary with current account balance to identify unusual balance patterns and potential financial mismatches. The study highlights customers with high salaries but very low balances, as well as customers with low salaries but unexpectedly high balances, helping identify irregular financial behavior, disengagement patterns, or potential risk segments. Additionally, customers maintaining zero account balances were analyzed as possible indicators of inactivity or churn risk.
+
+The analysis also examines customers who actively use credit card services, focusing on their average account balances, product adoption behavior, and overall financial engagement. Customers using two or more banking products demonstrate stronger product depth and higher engagement levels compared to single-product users. Furthermore, the average credit score of credit card users was analyzed to evaluate financial reliability, customer quality, and creditworthiness across engaged banking segments.
+
+
+
+
+<table>
+<tr>
+<td>
+
+| Details | Value |
+|---|---|
+| 💳 Total Credit Card Users | 7.06K |
+| 👩 Female Credit Card Users | 3.19K |
+| 👨 Male Credit Card Users | 3.86K |
+| 🧑 Young Customers (≤23) | 225 |
+| 🚨 Churned Customers | 1.42K |
+| ⚠️ Churned Young Customers | 16 |
+| 🏦 Zero Balance Customers | 2.592K |
+| 📈 Avg Credit Score | 650.19 |
+| ⏳ Avg Tenure | 5.05 Years |
+
+</td>
+
+<td>
+  
+## 📉 Credit Card Churn Distribution by Geography
+  
+| 🌍 Geography | 💳 Total Credit Card Customers | 🚨 Churned Customers | 📉 Churn Rate |
+|---|---|---|---|
+|France|3.54K|569|16.07%|
+|Germany|1.79K|577|32.23%|
+|Spain|1.72K|278|16.16%|
+
+</td>
+</tr>
+</table>
+
+
+
+
+
+
+
+
 
 # Skills and Tools
 * Data analysis
