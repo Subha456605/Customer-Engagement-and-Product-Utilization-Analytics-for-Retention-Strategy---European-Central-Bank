@@ -37,9 +37,9 @@ Understanding how customers use banking products and services is essential to de
 |Exited|	Churn indicator (target)|
 ### Dashboard
 <p>
-  <img src="Images/Dashboard_1.png"
+  <img src="Images/European powerbi dashboard_page-0001.jpg"
     width="45%">
-  <img src="Images/Dashboard_2.png"
+  <img src="Images/European powerbi dashboard_page-0002.jpg"
     width="45%">
 </p>
 For this analysis, an interactive dashboard was developed in Power BI that allows observation of the behavior of 10K banking customers in Europe. It has different slicers that allow the selection of specific characteristics for detailed analysis. Some measures were also created that complement the information provided by the dataset.
@@ -79,7 +79,6 @@ The analysis also examines customers who actively use credit card services, focu
 
 
 <table>
-<tr>
 <td>
 
 | Details | Value |
@@ -95,7 +94,8 @@ The analysis also examines customers who actively use credit card services, focu
 | ⏳ Avg Tenure | 5.05 Years |
 
 </td>
-
+<table>
+<table>
 <td>
   
 ## 📉 Credit Card Churn Distribution by Geography
@@ -107,7 +107,6 @@ The analysis also examines customers who actively use credit card services, focu
 |Spain|1.72K|278|16.16%|
 
 </td>
-</tr>
 </table>
 
 ## Customer Risk Classification
@@ -119,14 +118,17 @@ The analysis also examines customers who actively use credit card services, focu
 </p>
 
 
-
-
-
-
-
-# Skills and Tools
+# 🛠️ Skills & Tools
 * Data analysis
-* Critical thinking
-* Dashboard creation
+* SQL
+* Python
 * Power BI
+
+## 👨‍💻 Author
+
+**Subhradip Sahoo**
+
+- Aspiring Data Analyst
+- LinkedIn: www.linkedin.com/in/subhradip-sahoo-a8563b249
+- Email: 2000subhradip@gmail.com
 
