@@ -41,8 +41,6 @@ Understanding how customers use banking products and services is essential to de
     width="45%">
   <img src="Images/Dashboard_2.png"
     width="45%">
-  <img src="Images/Dashboard_3.png"
-    width="45%">
 </p>
 For this analysis, an interactive dashboard was developed in Power BI that allows observation of the behavior of 10K banking customers in Europe. It has different slicers that allow the selection of specific characteristics for detailed analysis. Some measures were also created that complement the information provided by the dataset.
 
@@ -112,7 +110,13 @@ The analysis also examines customers who actively use credit card services, focu
 </tr>
 </table>
 
-
+## Customer Risk Classification
+* At Risk: Customer has churned (Exited = 1) or is inactive{IsActiveMember = 0}.
+* Stable: Customer has not churned and remains an active member.
+<p>
+  <img src="Images/atrisk.png"
+    width="35%">
+</p>
 
 
 
