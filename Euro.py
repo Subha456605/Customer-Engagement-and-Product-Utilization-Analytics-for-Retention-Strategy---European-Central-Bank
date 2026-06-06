@@ -194,6 +194,29 @@ def kpi_card1(title, value, icon=None, is_positive=True):
         </div>
      </div>
      """, unsafe_allow_html=True)
+    
+def kpi_card2(title, value, icon=None):
+    st.markdown(f"""
+     <div style="
+        width:300px;
+        height:170px;
+        background:white;
+        padding:20px;
+        border-radius:20px;
+        color:white;
+        margin-top:5px;
+        margin-bottom:20px;
+        text-align:center;
+        ">
+        <div style="font-size:35px; font-weight:bold;color:black; margin-bottom:6px;">
+            {title}
+        </div>
+
+        <div style="font-size:35px; font-weight:bold;color:green; margin-top:4px;">
+            {value}
+        </div>
+     </div>
+     """, unsafe_allow_html=True)
 col1,col2,col3,col4=st.columns(4)
 with col1:
     kpi_card1("Total Customers",Total_Customers,icon="👥", is_positive=True)
@@ -236,11 +259,11 @@ with tab1:
             x="Product Type",
             y="Retention Rate",
             color="Product Type",
-            title="Retention Rate by Product Type",
+            title="Retention Rate",
             text_auto=".2f%",
             color_discrete_sequence=px.colors.qualitative.Pastel
         )
-        fig.update_layout(showlegend=False, title_font_size=15,title_x=0.5,height=400
+        fig.update_layout(showlegend=False, title_font_size=23,title_x=0.2,height=400
         )
         
         st.plotly_chart(fig, use_container_width=True)
@@ -255,13 +278,13 @@ with tab1:
         tenure_products,
         x="Tenure Group",
         y="NumOfProducts",
-        title="Total Product Usage by Tenure",
+        title="No of usage product",
         labels={
         "Tenure Group": "Tenure Group",
         "NumOfProducts": "Total Products Used"
         }
         )
-        fig.update_layout(title_font_size=15, title_x=0.5, height=400)
+        fig.update_layout(title_font_size=23, title_x=0.2, height=400)
         st.plotly_chart(fig, use_container_width=True)
         
     churn_df = (
@@ -274,9 +297,9 @@ with tab1:
         x="NumOfProducts",
         y="Churn Rate",
         text="Churn Rate",
-        title="Churn Rate by Number of Products"
+        title="Churn Rate by No ofProducts"
         )
-        fig.update_layout(title_font_size=15, title_x=0.5, height=400)
+        fig.update_layout(title_font_size=23, title_x=0.1, height=400)
         st.plotly_chart(fig, use_container_width=True)
     col1, col2 = st.columns(2)
     with col1:
@@ -305,5 +328,99 @@ with tab2:
     with col2:
         kpi_card("Premium Customers", Premium_Customers, icon="🌟", is_positive=True)
     with col3:
-        kpi_card("Avg Credit Score",filtered_df["CreditScore"].mean(),icon="🏆", is_positive=True
-)
+        kpi_card("Sticky Customers", Sticky_Customers, icon="🔒", is_positive=True)
+    col1,col2,col3=st.columns(3)
+    with col1:
+        max_score = filtered_df["CreditScore"].max()
+        rating = (
+        "Excellent" if max_score >= 800 else
+        "Very Good" if max_score >= 740 else
+        "Good" if max_score >= 670 else
+        "Fair" if max_score >= 580 else
+        "Poor"
+        )
+        
+        kpi_card2("Credit Score", f"{filtered_df['CreditScore'].max()} ({rating})", icon="📊")
+        
+    with col2:
+        account_df = (
+        filtered_df.groupby("Account Status").size().reset_index(name="Customer Count"))
+        
+        fig=px.pie(
+            account_df,
+            names="Account Status",
+            values="Customer Count",
+            title="Salary Balance Mismatch Detection",
+            labels={"Customer Count": "Number of Customers", "Account Status": "Account Status"},
+            color="Account Status",
+            color_discrete_sequence=px.colors.qualitative.Pastel
+        )
+        fig.update_layout(
+            title_x=0.1,title_font_size=18, height=300,width=300, margin=dict(t=60, b=20, l=20, r=20),legend=dict(
+            orientation="v",
+            y=0.5,
+            yanchor="middle",
+            x=1.02,
+            xanchor="left"
+        ))
+                           
+        st.plotly_chart(fig, use_container_width=True)
+    with col3:
+        tenure_df=filtered_df.groupby("Tenure 1").size().reset_index(name="Customer Count")
+        fig=px.bar(
+            tenure_df,
+            x="Tenure 1",
+            y="Customer Count",
+            title="Customer Distribution by Tenure",
+            labels={"Tenure 1": "Tenure (Years)", "Customer Count": "Number of Customers"},
+            color="Tenure 1",
+            color_discrete_sequence=px.colors.qualitative.Pastel
+        )
+        fig.update_layout(title_x=0.1, height=300,width=300, margin=dict(t=60, b=20, l=20, r=20))
+        st.plotly_chart(fig, use_container_width=True)
+with tab3:
+    corr_matrix = df[
+    ["CreditScore","Age","Exited","NumOfProducts","Balance"]].corr()
+
+    fig = px.imshow(
+        corr_matrix,
+        text_auto=True,
+        color_continuous_scale=[
+        "#f8fafc",  
+        "#566941",   
+        "#94af55"    
+        ],
+        title="Correlation Heatmap"
+    )
+    fig.update_layout(
+    paper_bgcolor="#e0f2fe",   
+    plot_bgcolor="#e0f2fe")
+    fig.update_traces(
+    textfont=dict(
+        color="black",
+        size=9
+    )
+    )
+    fig.update_layout(
+        coloraxis_colorbar=dict(
+        tickfont=dict(
+            color="black",
+            size=15
+        )
+    ),
+    xaxis=dict(
+        tickfont=dict(color="black", size=12)
+    ),
+    yaxis=dict(
+        tickfont=dict(color="black", size=12)
+    ),
+     title={
+        "text": "Correlation Heatmap",
+        "x": 0.35,
+        "font": {
+            "size": 25,
+            "color": "#1e3a8a"
+        }
+    }
+    )
+    st.plotly_chart(fig, width="stretch")
