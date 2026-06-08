@@ -1,7 +1,13 @@
-# Customer-Engagement-Product-Utilization-Analytics-for-Retention-Strategy - European-Central-Bank
+<h1 align="center">
+  💳 Customer-Engagement-Product-Utilization-Analytics-for-Retention-Strategy - European-Central-Bank
+</h1>
+
 This project analyzes European banking customer data to evaluate churn behavior, customer loyalty, engagement trends, and credit score distribution using interactive Power BI dashboards ,Streamlit live analytics and SQL-driven analytics on 2025 data.
 This project evaluates retention through the lens of customer behavior and relationship strength.
-# Background and Context
+<h2 align="center">
+  Background and Context
+</h2>
+
 Banks increasingly recognize that customer behavior and engagement—not just demographics—determine long-term retention. Customers may appear financially strong (high balance or salary) but still churn due to:
 * Low engagement
 * Limited product adoption
@@ -13,12 +19,18 @@ Understanding how customers use banking products and services is essential to de
 * Loyalty programs
 * Engagement-driven retention initiatives
 
-# Project Objectives
+<h2 align="center">
+  Project Objectives
+</h2>
+
   * Evaluate the relationship between engagement and churn
   * Measure retention impact of product count and product mix
   * Identify disengaged yet high-value customers
 
-# Dataset Description
+<h2 align="center">
+  Dataset Description
+</h2>
+
   ![img](Images/Data.png)
 | Column|	Description|
 |---|---|
@@ -35,16 +47,11 @@ Understanding how customers use banking products and services is essential to de
 |IsActiveMember|	Activity indicator|
 |EstimatedSalary|	Estimated annual salary|
 |Exited|	Churn indicator (target)|
-### Dashboard
-<p>
-  <img src="Images/European powerbi dashboard_page-0001.jpg"
-    width="45%">
-  <img src="Images/European powerbi dashboard_page-0002.jpg"
-    width="45%">
-</p>
-For this analysis, an interactive dashboard was developed in Power BI that allows observation of the behavior of 10K banking customers in Europe. It has different slicers that allow the selection of specific characteristics for detailed analysis. Some measures were also created that complement the information provided by the dataset.
 
-# Product Utilization  Analysis 
+<h2 align="center">
+  Product Utilization  Analysis
+</h2>
+
 ### Single-product vs multi-product retention
 Retention rates among single-product customers are lower compared to multi-product customers, indicating stronger loyalty and engagement among customers using multiple banking services such as credit cards, loans, and insurance products. Long-term customers demonstrate higher product adoption and deeper banking relationships over time. Out of 10K total customers, 5.08K are single-product customers, while 4.92K are multi-product customers. The customer base consists of 5.46K male customers and 4.54K female customers.
 
@@ -69,7 +76,10 @@ The overall churn rate is 20.37%, with female customers contributing 11.39% and 
     width="60%">
 </p>
 
-# Financial Commitment vs Engagement Analysis
+<h2 align="center">
+  Financial Commitment vs Engagement Analysis
+</h2>
+
 ###  Salary–balance mismatch detection
 This analysis evaluates customer financial commitment by comparing estimated salary with current account balance to identify unusual balance patterns and potential financial mismatches. The study highlights customers with high salaries but very low balances, as well as customers with low salaries but unexpectedly high balances, helping identify irregular financial behavior, disengagement patterns, or potential risk segments. Additionally, customers maintaining zero account balances were analyzed as possible indicators of inactivity or churn risk.
 
@@ -125,14 +135,24 @@ The analysis also examines customers who actively use credit card services, focu
     width="35%">
 </p>
 
+<h2 align="center">
+ PowerBI Dashboard
+</h2>
+<p>
+  <img src="Images/European powerbi dashboard_page-0001.jpg"
+    width="45%">
+  <img src="Images/European powerbi dashboard_page-0002.jpg"
+    width="45%">
+</p>
+For this analysis, an interactive dashboard was developed in Power BI that allows observation of the behavior of 10K banking customers in Europe. It has different slicers that allow the selection of specific characteristics for detailed analysis. Some measures were also created that complement the information provided by the dataset.
 
-# 🛠️ Skills & Tools
+### 🛠️ Skills & Tools
 * Data analysis
 * SQL
 * Python
 * Power BI
 
-## 👨‍💻 Author
+### 👨‍💻 Author
 
 **Subhradip Sahoo**
 
