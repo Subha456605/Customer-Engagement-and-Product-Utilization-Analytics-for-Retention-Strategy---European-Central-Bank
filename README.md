@@ -105,11 +105,19 @@ The analysis also examines customers who actively use credit card services, focu
 |France|3.54K|569|16.07%|
 |Germany|1.79K|577|32.23%|
 |Spain|1.72K|278|16.16%|
-
 </td>
 </table>
 
+### Credit Score Analysis
+
+* A total of 233 customers achieved a credit score of 850, representing the highest credit score observed in the dataset
+<p>
+  <img src="Images/credit.png"
+    width="45%">
+  <p>
+    
 ## Customer Risk Classification
+
 * At Risk: Customer has churned (Exited = 1) or is inactive{IsActiveMember = 0}.
 * Stable: Customer has not churned and remains an active member.
 <p>
