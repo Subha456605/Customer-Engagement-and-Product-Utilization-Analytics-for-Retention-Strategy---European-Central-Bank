@@ -58,7 +58,7 @@ body, p, span {
 </style>
 """, unsafe_allow_html=True)
 st.title("Customer Engagement & Product Utilization Analytics for Retention Strategy - European Bank")
-df=pd.read_csv("European_Bank PI.csv")
+df=pd.read_csv("European_Bank.csv")
 Churned_Customers=((df["Exited"]==1) & (df["NumOfProducts"]>1)).sum()
 
 df["Product Type"]=np.where(df["NumOfProducts"]>1, "Multi Product", "Single Product")
