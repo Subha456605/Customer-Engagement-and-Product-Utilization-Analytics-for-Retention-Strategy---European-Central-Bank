@@ -231,7 +231,7 @@ with col4:
     kpi_card1("Churned Customers", Churned_Customers, icon="⚠️", is_positive=False)
 
 
-tab1,tab2,tab3=st.tabs(["Product Utilization"," Financial Commitment vs Engagement Analysis","Churn Analysis"])
+tab1,tab2,tab3,tab4=st.tabs(["Product Utilization"," Financial Commitment vs Engagement Analysis","Churn Analysis","Data Description"])
 with tab1:
     st.subheader("Product Utilization Analysis")
 
@@ -265,13 +265,12 @@ with tab1:
         )
         fig.update_layout(showlegend=False, title_font_size=23,title_x=0.2,height=400
         )
-        
+        fig.update_xaxes(showgrid=False)
+        fig.update_yaxes(showgrid=False)
         st.plotly_chart(fig, use_container_width=True)
+        
     tenure_products = (
-    filtered_df.groupby("Tenure Group")["NumOfProducts"]
-    .sum()
-    .reset_index()
-    )
+    filtered_df.groupby("Tenure Group")["NumOfProducts"].sum().reset_index())
     
     with col2:
         fig = px.bar(
@@ -285,6 +284,8 @@ with tab1:
         }
         )
         fig.update_layout(title_font_size=23, title_x=0.2, height=400)
+        fig.update_xaxes(showgrid=False)
+        fig.update_yaxes(showgrid=False)
         st.plotly_chart(fig, use_container_width=True)
         
     churn_df = (
@@ -300,6 +301,8 @@ with tab1:
         title="Churn Rate by No ofProducts"
         )
         fig.update_layout(title_font_size=23, title_x=0.1, height=400)
+        fig.update_xaxes(showgrid=False)
+        fig.update_yaxes(showgrid=False)
         st.plotly_chart(fig, use_container_width=True)
     col1, col2 = st.columns(2)
     with col1:
@@ -377,50 +380,55 @@ with tab2:
             color_discrete_sequence=px.colors.qualitative.Pastel
         )
         fig.update_layout(title_x=0.1, height=300,width=300, margin=dict(t=60, b=20, l=20, r=20))
+        fig.update_xaxes(showgrid=False)
+        fig.update_yaxes(showgrid=False)
         st.plotly_chart(fig, use_container_width=True)
 with tab3:
-    corr_matrix = df[
-    ["CreditScore","Age","Exited","NumOfProducts","Balance"]].corr()
-
-    fig = px.imshow(
-        corr_matrix,
-        text_auto=True,
-        color_continuous_scale=[
-        "#f8fafc",  
-        "#566941",   
-        "#94af55"    
-        ],
-        title="Correlation Heatmap"
-    )
-    fig.update_layout(
-    paper_bgcolor="#e0f2fe",   
-    plot_bgcolor="#e0f2fe")
-    fig.update_traces(
-    textfont=dict(
-        color="black",
-        size=9
-    )
-    )
-    fig.update_layout(
-        coloraxis_colorbar=dict(
-        tickfont=dict(
-            color="black",
-            size=15
+    st.subheader("Churn Analysis")
+    col1, col2 = st.columns(2)
+    with col1:
+        churn_by_geogarphy_total=(filtered_df.groupby("Geography")["Exited"].sum()).reset_index().rename(columns={"Exited": "Total Churned Customers"})
+        total_customers_geography=(filtered_df.groupby("Geography")["CustomerId"].count()).reset_index().rename(columns={"CustomerId": "Total Customers"})
+        churn_by_geography = churn_by_geogarphy_total.merge(total_customers_geography, on="Geography")
+        st.dataframe(churn_by_geography.style.background_gradient(cmap="Blues"),width="stretch")
+        churn_by_geography["Churn Rate"] = (churn_by_geography["Total Churned Customers"] / churn_by_geography["Total Customers"]) * 100
+        fig = px.bar(
+            churn_by_geography,
+            x="Geography",
+            y="Churn Rate",
+            title="Churn Rate by Geography",
+            labels={"Geography": "Geography", "Churn Rate": "Churn Rate (%)"},
+            color="Geography",
+            color_discrete_sequence=px.colors.qualitative.Pastel
         )
-    ),
-    xaxis=dict(
-        tickfont=dict(color="black", size=12)
-    ),
-    yaxis=dict(
-        tickfont=dict(color="black", size=12)
-    ),
-     title={
-        "text": "Correlation Heatmap",
-        "x": 0.35,
-        "font": {
-            "size": 25,
-            "color": "#1e3a8a"
-        }
-    }
-    )
-    st.plotly_chart(fig, width="stretch")
+        fig.update_layout(title_x=0.1, title_font_size=18, height=400)
+        fig.update_xaxes(showgrid=False)
+        fig.update_yaxes(showgrid=False)
+        st.plotly_chart(fig, use_container_width=True)
+
+    with col2:
+        churn_by_tenure_group=(filtered_df.groupby("Tenure Group")["Exited"].sum()).reset_index().rename(columns={"Exited": "Total Churned Customers"})
+        total_customers_tenure=(filtered_df.groupby("Tenure Group")["CustomerId"].count()).reset_index().rename(columns={"CustomerId": "Total Customers"})
+        churn_by_tenure = churn_by_tenure_group.merge(total_customers_tenure, on="Tenure Group")
+        st.dataframe(churn_by_tenure.style.background_gradient(cmap="Blues"),width="stretch")
+        
+        churn_by_tenure["Churn Rate"] = (churn_by_tenure["Total Churned Customers"] / churn_by_tenure["Total Customers"]) * 100
+        fig = px.pie(
+            churn_by_tenure,
+            names="Tenure Group",
+            values="Churn Rate",
+            title="Churn Rate by Tenure Group",
+            labels={"Tenure Group": "Tenure Group", "Churn Rate": "Churn Rate (%)"},
+            color="Tenure Group",
+            color_discrete_sequence=px.colors.qualitative.Pastel
+        )
+        fig.update_layout(title_x=0.1, title_font_size=18, height=400)
+        fig.update_xaxes(showgrid=False)
+        fig.update_yaxes(showgrid=False)
+        st.plotly_chart(fig, use_container_width=True)
+
+    
+with tab4:
+    st.subheader("Dataset Table")
+    st.dataframe(filtered_df, width="stretch", height=400)
+    
