@@ -237,7 +237,7 @@ with col4:
     kpi_card1("Churned Customers", Churned_Customers, icon="⚠️", is_positive=False)
 
 
-tab1,tab2=st.tabs(["Product Utilization","Data Description"])
+tab1,tab2=st.tabs(["Dashboard","Data Description"])
 with tab1:
     st.subheader("Retention Analysis")
     col1,col2,col3=st.columns(3,gap="medium")
