@@ -16,7 +16,7 @@ st.markdown("""
     padding-top: 80px;
     }
 h1 {
-    background: linear-gradient(90deg, #ff00cc, #3333ff);
+    background: linear-gradient(90deg, #0D47A1, #424242);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         color: transparent;
@@ -26,6 +26,7 @@ h1 {
 /* 🔹 Section titles (st.subheader) */
 h2, h3 {
     color: black !important;
+    font-size:20px;
 }
 
 /*tab titles*/
@@ -43,6 +44,7 @@ section[data-testid="stSidebar"] {
 /* 🔹 Sidebar title */
 section[data-testid="stSidebar"] h1 {
     color: black !important;
+    font-size:25px;
 }
 
 /* 🔹 Sidebar labels */
@@ -55,7 +57,7 @@ section[data-testid="stSidebar"] label {
 section[data-testid="stSidebar"] .stSelectbox div,
 section[data-testid="stSidebar"] .stDateInput div,
 section[data-testid="stSidebar"] .stMultiSelect div {
-    color: blacks !important;
+    color: black !important;
 }
 /* 🔹 General text */
 body, p, span {
@@ -214,7 +216,7 @@ def kpi_card2(title, value, icon=None):
         margin-bottom:25px;
         text-align:center;
         ">
-        <div style="font-size:35px; font-weight:bold;color:black; margin-bottom:6px;background:yellow; padding:10px; border-radius:10px;">
+        <div style="font-size:35px; font-weight:bold;color:black; margin-bottom:6px;background:lightgray; padding:10px; border-radius:10px;">
            {icon if icon else ""} {title}
         </div>
 
@@ -449,22 +451,13 @@ with tab1:
             
         )
     st.subheader("Financial Commitment vs Engagement Analysis")
-    col1, col2 = st.columns(2, gap="medium")
+    col1, col2, col3 = st.columns(3, gap="medium")
     with col1:
         kpi_card("Credit Card Users", Credit_Card_Users, icon="💳", is_positive=True)
         kpi_card("Premium Customers", Premium_Customers, icon="🌟", is_positive=True)
         kpi_card("Sticky Customers", Sticky_Customers, icon="🔒", is_positive=True)
     
-        max_score = filtered_df["CreditScore"].max()
-        rating = (
-        "Excellent" if max_score >= 800 else
-        "Very Good" if max_score >= 740 else
-        "Good" if max_score >= 670 else
-        "Fair" if max_score >= 580 else
-        "Poor"
-        )
         
-        kpi_card2("Credit Score", f"{filtered_df['CreditScore'].max()} ({rating})", icon="📊")
     with col2:
         account_df = (
         filtered_df.groupby("Account Status").size().reset_index(name="Customer Count"))
@@ -504,7 +497,33 @@ with tab1:
         fig.update_xaxes(showgrid=False,showticklabels=False,title_font_color="black")
         fig.update_yaxes(showgrid=False,title_font_size=16,title_font_color="black",tickfont_size=16,tickfont_color="black")
         st.plotly_chart(fig, use_container_width=True)
+    with col3:
+        max_score = filtered_df["CreditScore"].max()
+        rating = (
+        "Excellent" if max_score >= 800 else
+        "Very Good" if max_score >= 740 else
+        "Good" if max_score >= 670 else
+        "Fair" if max_score >= 580 else
+        "Poor"
+        )
+        
+        kpi_card2("Credit Score", f"{filtered_df['CreditScore'].max()} ({rating})", icon="📊")
 
+        credit_dist=filtered_df.groupby("CreditScore").size().reset_index(name="Customer Count")
+        fig=px.histogram(
+            filtered_df,
+            x="CreditScore",
+            nbins=25,
+            title="Customers Distribution by Credit Score"
+        ) 
+        
+        fig.update_traces(
+            marker_color="#43A047"
+        )
+        fig.update_xaxes(title_font_color="black",tickfont_color="black")
+        fig.update_yaxes(showgrid=False,title_font_color="black",title_font_size=20,tickfont_color="black")
+        fig.update_layout(height=400,width=300,xaxis_title="Credit Score",yaxis_title="No Of Customers",title_x=0.1)
+        st.plotly_chart(fig,use_container_width=True)
     st.subheader("🌍Geographically Analysis")
     col1,col2=st.columns(2,gap="small")
     with col1:
@@ -526,6 +545,53 @@ with tab1:
             icon="",
             is_positive=True
         )
+    
+        Total_products=filtered_df["NumOfProducts"].sum()
+            
+        product_geo=(filtered_df.groupby("Geography")["NumOfProducts"].sum().reset_index(name="Total Products"))
+        product_geo["percentage"]=(product_geo["Total Products"]/Total_products *100).round(2)
+            
+        fig= px.pie(
+            product_geo,
+            names="Geography",
+            values="percentage",
+            hole=0.5,
+            title="Total Product Usage"
+            )
+        fig.update_traces(
+            textposition="inside",
+            texttemplate="%{label}<br>%{value:.2f}%"
+            )
+        fig.update_traces(
+            textposition="inside",
+            texttemplate="%{label}<br>%{value:.2f}%"
+            )
+        fig.update_layout(
+            title_x=0.2,showlegend=False,title_font_size=23,height=500,width=400
+            )
+        st.plotly_chart(fig, use_container_width=True)
+        
+    with col2:
+        retention_geo = (
+        filtered_df.groupby("Geography")["Exited"].apply(lambda x: (x == 0).mean() * 100).reset_index(name="Retention Rate"))
+        fig = px.pie(
+        retention_geo,
+        names="Geography",
+        values="Retention Rate",
+        hole=0.5,
+        title="Retention Rate by Geography"
+        )
+
+        fig.update_traces(
+        textposition="inside",
+        texttemplate="%{label}<br>%{value:.2f}%"
+        )
+
+        fig.update_layout(
+        title_x=0.2,showlegend=False,title_font_size=23,height=500,width=400
+        )
+        st.plotly_chart(fig, use_container_width=True)
+        
         geo_churn = (
         filtered_df[filtered_df["Exited"] == 1].groupby("Geography").size().reset_index(name="Churned Customers"))
         fig = px.bar(
@@ -552,28 +618,6 @@ with tab1:
             showlegend=False,height=500,width=400,title_font_size=23
         )
 
-        st.plotly_chart(fig, use_container_width=True)
-        
-    with col2:
-        retention_geo = (
-        filtered_df.groupby("Geography")["Exited"].apply(lambda x: (x == 0).mean() * 100).reset_index(name="Retention Rate"))
-        
-        fig = px.pie(
-        retention_geo,
-        names="Geography",
-        values="Retention Rate",
-        hole=0.5,
-        title="Retention Rate by Geography"
-        )
-
-        fig.update_traces(
-        textposition="inside",
-        texttemplate="%{label}<br>%{value:.2f}%"
-        )
-
-        fig.update_layout(
-        title_x=0.2,showlegend=False,title_font_size=23,height=500,width=400
-        )
         st.plotly_chart(fig, use_container_width=True)
 with tab2:
     st.subheader("Dataset Table")
