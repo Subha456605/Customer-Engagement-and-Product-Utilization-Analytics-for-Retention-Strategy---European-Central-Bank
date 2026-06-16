@@ -128,8 +128,8 @@ The analysis also examines customers who actively use credit card services, focu
 
   * 1952 customers belongs to from 650-699 credit score.
     <p>
-  <img src="Images/newplot(1).png"
-    width="45%">
+  <img src="Images/newplot (1).png"
+    width="60%">
   <p>
 ## Customer Risk Classification
 
