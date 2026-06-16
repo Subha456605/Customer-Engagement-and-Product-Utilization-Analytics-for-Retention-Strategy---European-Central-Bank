@@ -125,7 +125,12 @@ The analysis also examines customers who actively use credit card services, focu
   <img src="Images/credit.png"
     width="45%">
   <p>
-    
+
+  * 1952 customers belongs to from 650-699 credit score.
+    <p>
+  <img src="Images/newplot(1).png"
+    width="45%">
+  <p>
 ## Customer Risk Classification
 
 * At Risk: Customer has churned (Exited = 1) or is inactive{IsActiveMember = 0}.
